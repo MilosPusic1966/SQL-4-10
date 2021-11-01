@@ -1,9 +1,24 @@
 use MilosP2021
 CREATE TABLE Ocena(
 ID INT IDENTITY(1,1) PRIMARY KEY,
-Ucenik NVARCHAR(30),
-Predmet NVARCHAR(30),
-Nastavnik NVARCHAR(30),
-Ocena INT,
-Datum DATETIME
+ Ucenik NVARCHAR(30),
+ Predmet NVARCHAR(30),
+ Nastavnik NVARCHAR(30),
+ Ocena INT,
+ Datum DATETIME
+)
+CREATE TABLE Ocena_Audit(
+ID INT IDENTITY(1,1) PRIMARY KEY,
+Akcija NVARCHAR(20),
+Datum_Akcije DATETIME,
+OldUcenik NVARCHAR(30),
+NewUcenik NVARCHAR(30),
+OldPredmet NVARCHAR(30),
+NewPredmet NVARCHAR(30),
+OldNastavnik NVARCHAR(30),
+NewNastavnik NVARCHAR(30),
+OldOcena INT,
+NewOcena INT,
+OldDatum DATETIME,
+NewDatum DATETIME
 )
