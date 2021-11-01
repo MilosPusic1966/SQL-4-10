@@ -24,3 +24,16 @@ END
 
 DELETE FROM Ocena WHERE ID=6
 
+CREATE TRIGGER Upd_Ocena ON Ocena
+AFTER UPDATE
+AS
+BEGIN
+INSERT INTO Ocena_Audit
+	SELECT 'Izmena', GETDATE(), Del.ucenik, Ins.ucenik,
+	Del.predmet, Ins.predmet, Del.nastavnik, Ins.nastavnik, 
+	Del.ocena, Ins.ocena, Del.datum, Ins.datum 
+	FROM inserted AS Ins JOIN deleted AS Del ON Ins.ID = Del.ID
+END
+
+UPDATE Ocena 
+SET Ucenik='Pavle Georgijev', Ocena=6 WHERE ID=7
